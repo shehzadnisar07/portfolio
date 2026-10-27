@@ -105,7 +105,7 @@ export default function Footer() {
             </div>
             <a
               href={contact.resumePath}
-              download
+              download={contact.resumeFileName}
               className="mt-4 inline-flex min-h-[40px] items-center gap-1.5 text-xs font-mono text-emerald-400 hover:text-emerald-300 transition-colors"
             >
               <span>Download PDF Resume</span>

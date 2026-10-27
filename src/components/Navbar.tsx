@@ -184,7 +184,7 @@ export default function Navbar() {
 
             <a
               href={contact.resumePath}
-              download
+              download={contact.resumeFileName}
               className="inline-flex min-h-[40px] items-center gap-1.5 rounded-full bg-gradient-to-r from-emerald-500 to-teal-600 px-3 py-2 sm:px-4 text-xs font-bold text-black tracking-wide shadow-md shadow-emerald-500/20 hover:brightness-110 hover:shadow-emerald-500/30 transition-all"
             >
               <span>Resume</span>

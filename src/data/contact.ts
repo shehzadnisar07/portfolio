@@ -7,7 +7,8 @@ export const contact = {
   location: "Karachi, Pakistan",
   github: "https://github.com/shehzadnisar07",
   linkedin: "https://www.linkedin.com/in/shehzadnisar07",
-  resumePath: "/resume.pdf",
+  resumePath: "/SHEHZAD_NISAR_RESUME.pdf",
+  resumeFileName: "SHEHZAD_NISAR_RESUME.pdf",
   availability: "Available for Java Backend & Microservices Engineering Roles",
   summary:
     "Final-year Bachelor of Computer Science student at the University of Karachi building backend microservices and full-stack web applications with Java and Spring Boot on the backend and React with TypeScript on the frontend.",
