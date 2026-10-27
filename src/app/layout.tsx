@@ -86,7 +86,15 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-screen bg-[#090b10] text-[#f8fafc] font-sans overflow-x-hidden relative selection:bg-emerald-500 selection:text-black">
+      <body className="min-h-screen bg-[#090b10] text-[#f8fafc] font-sans overflow-x-clip relative selection:bg-emerald-500 selection:text-black">
+        {/* Accessible Skip Link */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[200] focus:rounded-full focus:bg-emerald-500 focus:px-5 focus:py-2.5 focus:text-xs focus:font-mono focus:font-bold focus:text-black focus:shadow-lg"
+        >
+          Skip to main content
+        </a>
+
         {/* Subtle Atmospheric Noise Overlay */}
         <div className="noise-overlay pointer-events-none" aria-hidden="true" />
 
@@ -97,7 +105,11 @@ export default function RootLayout({
         />
 
         <Navbar />
-        <main className="flex flex-col items-center w-full min-h-screen">
+        <main
+          id="main-content"
+          tabIndex={-1}
+          className="flex flex-col items-center w-full min-h-screen focus:outline-none"
+        >
           {children}
         </main>
         <ClientOnlyEffects />

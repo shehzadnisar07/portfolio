@@ -14,17 +14,44 @@
 
   html {
     color-scheme: dark;
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 
   html,
   body {
     min-height: 100%;
     width: 100%;
+    max-width: 100%;
     background-color: #090b10;
     color: #f8fafc;
-    overflow-x: hidden;
+    overflow-x: clip;
     selection-background-color: #10b981;
     selection-color: #090b10;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+  }
+
+  p,
+  li {
+    text-wrap: pretty;
+    overflow-wrap: break-word;
+  }
+
+  /* Accessible keyboard focus ring */
+  :where(a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])):focus-visible {
+    outline: 2px solid #10b981;
+    outline-offset: 2px;
   }
 
   ::selection {
@@ -54,10 +81,9 @@
 /* Subtle Film Grain Noise Texture */
 .noise-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  inset: 0;
+  width: 100%;
+  height: 100dvh;
   pointer-events: none;
   z-index: 9998;
   opacity: 0.035;
@@ -137,22 +163,31 @@
 .section-divider {
   width: 100%;
   height: 1px;
-  margin: 3rem 0;
+  margin: 2rem 0;
   background: linear-gradient(90deg, rgba(16,185,129,0) 0%, rgba(16,185,129,0.3) 30%, rgba(56,189,248,0.4) 50%, rgba(16,185,129,0.3) 70%, rgba(16,185,129,0) 100%);
   opacity: 0.35;
 }
 
+@media (min-width: 640px) {
+  .section-divider {
+    margin: 3rem 0;
+  }
+}
+
 @media (min-width: 768px) {
   .section-divider {
-    margin: 5rem 0;
+    margin: 4.5rem 0;
   }
 }
 
 /* Reduced motion accessibility */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+  .animate-ping,
+  .animate-pulse {
+    animation: none !important;
+  }
+
+  .glass-card {
+    transition: none !important;
   }
 }

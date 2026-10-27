@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState, type ReactNode } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 interface MagneticButtonProps {
   children: ReactNode;
@@ -16,9 +16,17 @@ export default function MagneticButton({
 }: MagneticButtonProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
+  const prefersReducedMotion = useReducedMotion();
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!ref.current) return;
+    if (
+      !ref.current ||
+      prefersReducedMotion ||
+      (typeof window !== "undefined" &&
+        window.matchMedia("(pointer: coarse)").matches)
+    ) {
+      return;
+    }
     const { clientX, clientY } = e;
     const { width, height, left, top } = ref.current.getBoundingClientRect();
     const x = clientX - (left + width / 2);
@@ -37,7 +45,7 @@ export default function MagneticButton({
       onMouseLeave={handleMouseLeave}
       animate={{ x: position.x, y: position.y }}
       transition={{ type: "spring", stiffness: 200, damping: 18, mass: 0.1 }}
-      className={`inline-block ${className || ""}`}
+      className={className || "inline-block"}
     >
       {children}
     </motion.div>

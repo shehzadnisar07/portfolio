@@ -34,14 +34,14 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="py-20 md:py-32 relative text-white">
+    <section id="about" className="w-full py-14 sm:py-20 md:py-28 relative text-white">
       <SectionContainer>
-        <div className="flex flex-col lg:flex-row items-center lg:items-start gap-12 lg:gap-16">
+        <div className="flex flex-col lg:flex-row items-center lg:items-start gap-10 sm:gap-12 lg:gap-16">
           {/* Left Column: Profile Photo at Karachi University Gate */}
-          <AnimatedSection className="w-full lg:w-[420px] shrink-0 flex flex-col items-center">
-            <div className="relative group w-full max-w-[360px]">
+          <AnimatedSection className="w-full lg:w-[400px] xl:w-[420px] shrink-0 flex flex-col items-center">
+            <div className="relative group w-full max-w-[300px] sm:max-w-[360px]">
               {/* Radiant Ambient Glow */}
-              <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-emerald-500/30 to-cyan-500/30 blur-xl opacity-50 group-hover:opacity-80 transition duration-700" />
+              <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-emerald-500/30 to-cyan-500/30 blur-xl opacity-50 group-hover:opacity-80 transition duration-700" aria-hidden="true" />
 
               {/* Photo Frame Container */}
               <div className="relative overflow-hidden rounded-3xl border border-white/15 bg-[#0d121c] p-2.5 shadow-2xl">
@@ -50,18 +50,18 @@ export default function About() {
                     src="/images/profile/shehzad-uok.jpg"
                     alt="Shehzad Nisar at University of Karachi"
                     fill
-                    sizes="(max-width: 768px) 100vw, 380px"
+                    sizes="(max-width: 640px) 300px, (max-width: 1024px) 360px, 380px"
                     priority
                     className="object-cover object-top filter brightness-[0.98] transition-transform duration-700 group-hover:scale-105"
                   />
                   {/* Subtle gradient vignette */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#090b10] via-transparent to-transparent opacity-60" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#090b10] via-transparent to-transparent opacity-60" aria-hidden="true" />
                 </div>
 
                 {/* Photo Caption Badge */}
-                <div className="mt-3 flex items-center justify-between px-2 py-1 text-xs font-mono text-zinc-400">
+                <div className="mt-3 flex flex-wrap items-center justify-between gap-2 px-2 py-1 text-[11px] sm:text-xs font-mono text-zinc-400">
                   <span className="flex items-center gap-1.5 text-emerald-400 font-semibold">
-                    <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+                    <span className="h-2 w-2 shrink-0 rounded-full bg-emerald-400 animate-pulse" aria-hidden="true" />
                     SHEHZAD NISAR
                   </span>
                   <span>UNIV. OF KARACHI</span>
@@ -71,16 +71,16 @@ export default function About() {
           </AnimatedSection>
 
           {/* Right Column: Bio Narrative & Technical Ethos */}
-          <AnimatedSection delay={0.2} className="flex-1 text-left">
+          <AnimatedSection delay={0.2} className="flex-1 min-w-0 text-left">
             <div className="inline-flex items-center gap-2 rounded-md bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 text-xs font-mono font-medium text-emerald-400 mb-4">
               <span>01. ABOUT ME</span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-white leading-tight">
-              Engineering Resilient Backends & Microservice Systems
+            <h2 className="text-[clamp(1.75rem,1.2rem+2.5vw,3rem)] font-black tracking-tight text-white leading-tight">
+              Engineering Resilient Backends &amp; Microservice Systems
             </h2>
 
-            <div className="mt-6 space-y-4 text-base sm:text-lg text-zinc-300 leading-relaxed font-normal">
+            <div className="mt-5 sm:mt-6 space-y-4 text-sm sm:text-base md:text-lg text-zinc-300 leading-relaxed font-normal">
               <p>
                 I am a final-year Bachelor of Computer Science student at the{" "}
                 <strong className="text-white font-semibold">University of Karachi</strong>.
@@ -98,7 +98,7 @@ export default function About() {
             </div>
 
             {/* Quick Facts Grid */}
-            <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+            <div className="mt-7 sm:mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               {quickFacts.map((fact, idx) => {
                 const IconComponent = fact.Icon;
                 return (
@@ -109,13 +109,13 @@ export default function About() {
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 mt-0.5">
                       <IconComponent className="w-5 h-5" strokeWidth={1.75} aria-hidden="true" />
                     </div>
-                    <div>
+                    <div className="min-w-0">
                       <span className="block text-[11px] font-mono uppercase tracking-widest text-emerald-400 font-semibold">
                         {fact.label}
                       </span>
-                      <h4 className="text-sm sm:text-base font-bold text-white mt-0.5">
+                      <h3 className="text-sm sm:text-base font-bold text-white mt-0.5 break-words">
                         {fact.value}
-                      </h4>
+                      </h3>
                       <p className="text-xs text-zinc-400 mt-1">
                         {fact.detail}
                       </p>

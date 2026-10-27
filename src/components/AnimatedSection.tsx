@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, type HTMLMotionProps } from "framer-motion";
+import { motion, useReducedMotion, type HTMLMotionProps } from "framer-motion";
 
 interface AnimatedSectionProps extends HTMLMotionProps<"div"> {
   delay?: number;
@@ -16,19 +16,25 @@ export default function AnimatedSection({
   viewport,
   ...props
 }: AnimatedSectionProps) {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
     <motion.div
       className={className}
-      initial={initial || { opacity: 0, y: 30 }}
+      initial={
+        prefersReducedMotion ? { opacity: 1, y: 0 } : initial || { opacity: 0, y: 24 }
+      }
       whileInView={whileInView || { opacity: 1, y: 0 }}
       transition={
-        transition || {
-          delay,
-          duration: 0.6,
-          ease: [0.16, 1, 0.3, 1],
-        }
+        prefersReducedMotion
+          ? { duration: 0 }
+          : transition || {
+              delay,
+              duration: 0.55,
+              ease: [0.16, 1, 0.3, 1],
+            }
       }
-      viewport={viewport || { once: true, amount: 0.15 }}
+      viewport={viewport || { once: true, amount: 0.12 }}
       {...props}
     >
       {children}

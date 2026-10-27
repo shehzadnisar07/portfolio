@@ -4,18 +4,17 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 export default function CursorTrail() {
-  const [mounted, setMounted] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: -100, y: -100 });
   const [isHovering, setIsHovering] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
-    const isTouchDevice =
+    const isTouchOrReducedMotion =
       window.innerWidth < 768 ||
       "ontouchstart" in window ||
-      navigator.maxTouchPoints > 0;
+      navigator.maxTouchPoints > 0 ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    if (isTouchDevice) return;
+    if (isTouchOrReducedMotion) return;
 
     const updateMousePosition = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
@@ -45,7 +44,7 @@ export default function CursorTrail() {
     };
   }, []);
 
-  if (!mounted || mousePosition.x < 0) return null;
+  if (mousePosition.x < 0) return null;
 
   return (
     <div className="pointer-events-none fixed inset-0 z-[9999] hidden md:block">

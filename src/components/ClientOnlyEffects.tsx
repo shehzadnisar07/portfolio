@@ -5,10 +5,11 @@ import CursorTrail from "./CursorTrail";
 
 export default function ClientOnlyEffects() {
   useEffect(() => {
-    // Only initialize smooth scroll on desktop pointer devices
+    // Only initialize smooth scroll on desktop pointer devices without reduced motion
     if (
       typeof window === "undefined" ||
       window.matchMedia("(pointer: coarse)").matches ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
       window.innerWidth < 768
     ) {
       return;
