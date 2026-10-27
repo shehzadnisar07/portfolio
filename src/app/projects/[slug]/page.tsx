@@ -3,7 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { projects } from "@/data/projects";
 import SectionContainer from "@/components/SectionContainer";
-import { FaGithub, FaExternalLinkAlt, FaArrowLeft } from "react-icons/fa";
+import { ExternalLink, ArrowLeft } from "lucide-react";
+import { Github } from "@/components/icons/BrandIcons";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
@@ -29,7 +30,7 @@ export default async function ProjectDetailPage({
           href="/#projects"
           className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-mono text-zinc-300 hover:text-white hover:border-emerald-500/40 transition-all mb-8"
         >
-          <FaArrowLeft className="text-xs" />
+          <ArrowLeft className="w-3.5 h-3.5" strokeWidth={1.75} aria-hidden="true" />
           <span>Back to Systems Portfolio</span>
         </Link>
 
@@ -65,7 +66,7 @@ export default async function ProjectDetailPage({
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full bg-emerald-500 px-6 py-3 text-xs font-bold text-black hover:bg-emerald-400 hover:shadow-lg hover:shadow-emerald-500/25 transition-all"
               >
-                <FaExternalLinkAlt className="text-xs" />
+                <ExternalLink className="w-3.5 h-3.5" strokeWidth={1.75} aria-hidden="true" />
                 <span>Visit Live Platform</span>
               </a>
             )}
@@ -77,7 +78,7 @@ export default async function ProjectDetailPage({
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-xs font-mono text-white hover:border-white/30 transition-all"
               >
-                <FaGithub className="text-base" />
+                <Github className="w-4 h-4" strokeWidth={1.75} aria-hidden="true" />
                 <span>Inspect Source Code</span>
               </a>
             )}
@@ -173,7 +174,7 @@ export default async function ProjectDetailPage({
           </div>
         )}
 
-        {/* Code Snippet Preview (for TransMoney) */}
+        {/* Code Snippet Preview (for TransMoney / Sign Analyzer / Console Banking) */}
         {project.codeSnippet && (
           <div className="mt-12 text-left">
             <div className="flex items-center justify-between px-4 py-2.5 rounded-t-2xl bg-[#0e131d] border-t border-x border-white/10 font-mono text-xs text-zinc-400">
@@ -191,7 +192,7 @@ export default async function ProjectDetailPage({
           </div>
         )}
 
-        {/* Visual Case Study Gallery */}
+        {/* Visual Case Study Gallery (only when gallery has images) */}
         {project.gallery && project.gallery.length > 0 && (
           <div className="mt-16 text-left">
             <div className="mb-8">
@@ -238,7 +239,7 @@ export default async function ProjectDetailPage({
             href="/#projects"
             className="inline-flex items-center gap-2 rounded-full bg-emerald-500 px-8 py-3.5 text-xs font-bold font-mono text-black hover:bg-emerald-400 transition-all"
           >
-            <FaArrowLeft className="text-xs" />
+            <ArrowLeft className="w-3.5 h-3.5" strokeWidth={2} aria-hidden="true" />
             <span>RETURN TO PORTFOLIO</span>
           </Link>
         </div>

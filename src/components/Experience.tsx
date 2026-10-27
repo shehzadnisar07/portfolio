@@ -3,6 +3,7 @@
 import SectionContainer from "./SectionContainer";
 import AnimatedSection from "./AnimatedSection";
 import { experiences } from "@/data/experience";
+import { ArrowRight } from "lucide-react";
 
 export default function Experience() {
   return (
@@ -60,7 +61,7 @@ export default function Experience() {
                 <ul className="mt-4 space-y-2.5 text-xs sm:text-sm text-zinc-400">
                   {exp.bullets.map((bullet, bIdx) => (
                     <li key={bIdx} className="flex items-start gap-2.5">
-                      <span className="text-emerald-400 shrink-0 mt-0.5">▹</span>
+                      <ArrowRight className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" strokeWidth={1.75} aria-hidden="true" />
                       <span>{bullet}</span>
                     </li>
                   ))}

@@ -5,13 +5,15 @@ import SectionContainer from "./SectionContainer";
 import AnimatedSection from "./AnimatedSection";
 import { contact } from "@/data/contact";
 import {
-  FaEnvelope,
-  FaPhoneAlt,
-  FaMapMarkerAlt,
-  FaGithub,
-  FaLinkedin,
-  FaWhatsapp,
-} from "react-icons/fa";
+  Mail,
+  Phone,
+  MapPin,
+  MessageCircle,
+  CheckCircle2,
+  Send,
+  Clock,
+} from "lucide-react";
+import { Github, Linkedin } from "@/components/icons/BrandIcons";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -24,7 +26,6 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Pre-populate user's default email client as a reliable fallback
     const mailtoUrl = `mailto:${contact.email}?subject=${encodeURIComponent(
       formData.subject || "Portfolio Inquiry: " + formData.name
     )}&body=${encodeURIComponent(
@@ -46,7 +47,7 @@ export default function Contact() {
             Initiate Conversation
           </h2>
           <p className="mt-4 text-base sm:text-lg text-zinc-400 leading-relaxed">
-            Interested in discussing a backend engineering role, distributed systems architecture, or collaborating on Java microservices? Reach out directly.
+            Interested in discussing a backend engineering role, microservices architecture, or collaborating on Java systems? Reach out directly.
           </p>
         </div>
 
@@ -64,7 +65,7 @@ export default function Contact() {
                   className="flex items-start gap-4 p-3.5 rounded-2xl bg-white/[0.03] hover:bg-emerald-500/10 border border-white/5 hover:border-emerald-500/30 transition-all group"
                 >
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-400 group-hover:scale-110 transition-transform">
-                    <FaEnvelope />
+                    <Mail className="w-5 h-5" strokeWidth={1.75} aria-hidden="true" />
                   </div>
                   <div className="overflow-hidden">
                     <span className="block text-[10px] font-mono uppercase tracking-widest text-zinc-400">
@@ -81,7 +82,7 @@ export default function Contact() {
                   className="flex items-start gap-4 p-3.5 rounded-2xl bg-white/[0.03] hover:bg-emerald-500/10 border border-white/5 hover:border-emerald-500/30 transition-all group"
                 >
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-400 group-hover:scale-110 transition-transform">
-                    <FaPhoneAlt />
+                    <Phone className="w-5 h-5" strokeWidth={1.75} aria-hidden="true" />
                   </div>
                   <div>
                     <span className="block text-[10px] font-mono uppercase tracking-widest text-zinc-400">
@@ -95,7 +96,7 @@ export default function Contact() {
 
                 <div className="flex items-start gap-4 p-3.5 rounded-2xl bg-white/[0.03] border border-white/5">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-cyan-500/10 text-cyan-400">
-                    <FaMapMarkerAlt />
+                    <MapPin className="w-5 h-5" strokeWidth={1.75} aria-hidden="true" />
                   </div>
                   <div>
                     <span className="block text-[10px] font-mono uppercase tracking-widest text-zinc-400">
@@ -120,7 +121,7 @@ export default function Contact() {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 rounded-full bg-emerald-600/20 border border-emerald-500/30 px-4 py-2 text-xs font-semibold text-emerald-300 hover:bg-emerald-600/30 transition-all"
                   >
-                    <FaWhatsapp className="text-sm" />
+                    <MessageCircle className="w-4 h-4" strokeWidth={1.75} aria-hidden="true" />
                     <span>WhatsApp</span>
                   </a>
 
@@ -130,7 +131,7 @@ export default function Contact() {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 rounded-full bg-white/5 border border-white/10 px-4 py-2 text-xs font-semibold text-zinc-300 hover:text-white hover:border-white/20 transition-all"
                   >
-                    <FaGithub className="text-sm" />
+                    <Github className="w-4 h-4" strokeWidth={1.75} aria-hidden="true" />
                     <span>GitHub</span>
                   </a>
 
@@ -140,7 +141,7 @@ export default function Contact() {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 rounded-full bg-cyan-500/10 border border-cyan-500/20 px-4 py-2 text-xs font-semibold text-cyan-300 hover:bg-cyan-500/20 transition-all"
                   >
-                    <FaLinkedin className="text-sm" />
+                    <Linkedin className="w-4 h-4" strokeWidth={1.75} aria-hidden="true" />
                     <span>LinkedIn</span>
                   </a>
                 </div>
@@ -154,15 +155,20 @@ export default function Contact() {
               <h3 className="text-xl font-bold text-white mb-2">
                 Send a Message
               </h3>
-              <p className="text-xs sm:text-sm text-zinc-400 mb-6">
-                ⚡ Direct inquiry dispatched to {contact.email}.
+              <p className="inline-flex items-center gap-1.5 text-xs sm:text-sm text-zinc-400 mb-6 font-mono">
+                <Clock className="w-3.5 h-3.5 text-emerald-400" strokeWidth={1.75} aria-hidden="true" />
+                <span>Direct inquiry dispatched to {contact.email}.</span>
               </p>
 
               {submitted ? (
                 <div className="rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-6 text-center">
-                  <div className="text-3xl mb-2">✅</div>
+                  <CheckCircle2
+                    className="w-12 h-12 text-emerald-400 mx-auto mb-3"
+                    strokeWidth={1.75}
+                    aria-hidden="true"
+                  />
                   <h4 className="text-lg font-bold text-white">
-                    Inquiry Dispatched!
+                    Inquiry Prepared
                   </h4>
                   <p className="text-sm text-zinc-300 mt-1">
                     Your email client should open with your message pre-loaded.
@@ -220,7 +226,7 @@ export default function Contact() {
                       onChange={(e) =>
                         setFormData({ ...formData, subject: e.target.value })
                       }
-                      placeholder="Backend Engineering Opportunity / Microservices Discussion"
+                      placeholder="Java Backend Opportunity / Microservices Discussion"
                       className="w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-white placeholder-zinc-600 focus:border-emerald-500/60 focus:bg-white/[0.06] focus:outline-none transition-all"
                     />
                   </div>
@@ -243,9 +249,10 @@ export default function Contact() {
 
                   <button
                     type="submit"
-                    className="w-full rounded-full bg-emerald-500 py-3.5 text-xs font-bold font-mono tracking-widest text-black transition-all hover:bg-emerald-400 hover:shadow-lg hover:shadow-emerald-500/25 active:scale-[0.99]"
+                    className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-emerald-500 py-3.5 text-xs font-bold font-mono tracking-widest text-black transition-all hover:bg-emerald-400 hover:shadow-lg hover:shadow-emerald-500/25 active:scale-[0.99]"
                   >
-                    SEND INQUIRY →
+                    <span>SEND INQUIRY</span>
+                    <Send className="w-3.5 h-3.5" strokeWidth={2} aria-hidden="true" />
                   </button>
                 </form>
               )}

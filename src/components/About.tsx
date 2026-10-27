@@ -3,31 +3,32 @@
 import Image from "next/image";
 import SectionContainer from "./SectionContainer";
 import AnimatedSection from "./AnimatedSection";
+import { GraduationCap, MapPin, Server, Briefcase } from "lucide-react";
 
 export default function About() {
   const quickFacts = [
     {
       label: "Alma Mater",
       value: "University of Karachi (UBIT)",
-      icon: "🎓",
+      Icon: GraduationCap,
       detail: "BS Computer Science (2023 – Expected 2026)",
     },
     {
       label: "Location",
       value: "Karachi, Pakistan",
-      icon: "📍",
+      Icon: MapPin,
       detail: "Open to Local & Remote Engineering Roles",
     },
     {
       label: "Core Specialization",
       value: "Java, Spring Boot & Microservices",
-      icon: "⚡",
+      Icon: Server,
       detail: "Microservices Architecture, Kafka, Redis, MySQL",
     },
     {
       label: "Availability",
       value: "Actively Interviewing",
-      icon: "💼",
+      Icon: Briefcase,
       detail: "Entry / Junior Java Backend & Full-Stack Roles",
     },
   ];
@@ -76,7 +77,7 @@ export default function About() {
             </div>
 
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-white leading-tight">
-              Engineering Resilient Backends & Distributed Consistency
+              Engineering Resilient Backends & Microservice Systems
             </h2>
 
             <div className="mt-6 space-y-4 text-base sm:text-lg text-zinc-300 leading-relaxed font-normal">
@@ -98,25 +99,30 @@ export default function About() {
 
             {/* Quick Facts Grid */}
             <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-              {quickFacts.map((fact, idx) => (
-                <div
-                  key={idx}
-                  className="glass-card rounded-2xl p-4 border border-white/10 hover:border-emerald-500/30 transition-all flex items-start gap-3.5"
-                >
-                  <span className="text-2xl shrink-0 mt-0.5">{fact.icon}</span>
-                  <div>
-                    <span className="block text-[11px] font-mono uppercase tracking-widest text-emerald-400 font-semibold">
-                      {fact.label}
-                    </span>
-                    <h4 className="text-sm sm:text-base font-bold text-white mt-0.5">
-                      {fact.value}
-                    </h4>
-                    <p className="text-xs text-zinc-400 mt-1">
-                      {fact.detail}
-                    </p>
+              {quickFacts.map((fact, idx) => {
+                const IconComponent = fact.Icon;
+                return (
+                  <div
+                    key={idx}
+                    className="glass-card rounded-2xl p-4 border border-white/10 hover:border-emerald-500/30 transition-all flex items-start gap-3.5"
+                  >
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 mt-0.5">
+                      <IconComponent className="w-5 h-5" strokeWidth={1.75} aria-hidden="true" />
+                    </div>
+                    <div>
+                      <span className="block text-[11px] font-mono uppercase tracking-widest text-emerald-400 font-semibold">
+                        {fact.label}
+                      </span>
+                      <h4 className="text-sm sm:text-base font-bold text-white mt-0.5">
+                        {fact.value}
+                      </h4>
+                      <p className="text-xs text-zinc-400 mt-1">
+                        {fact.detail}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </AnimatedSection>
         </div>

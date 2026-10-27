@@ -5,13 +5,14 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import SectionContainer from "./SectionContainer";
 import { contact } from "@/data/contact";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { Download, Menu, X } from "lucide-react";
+import { Github, Linkedin } from "@/components/icons/BrandIcons";
 
 const navLinks = [
   { name: "About", href: "#about" },
   { name: "Skills", href: "#skills" },
+  { name: "Microservices", href: "#architecture" },
   { name: "Projects", href: "#projects" },
-  { name: "Architecture", href: "#architecture" },
   { name: "Experience", href: "#experience" },
   { name: "Contact", href: "#contact" },
 ];
@@ -115,7 +116,7 @@ export default function Navbar() {
               aria-label="GitHub Profile"
               className="hidden sm:flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-zinc-300 hover:border-emerald-500/40 hover:text-white hover:bg-white/5 transition-all"
             >
-              <FaGithub className="text-base" />
+              <Github className="w-4 h-4" strokeWidth={1.75} aria-hidden="true" />
             </a>
 
             <a
@@ -125,7 +126,7 @@ export default function Navbar() {
               aria-label="LinkedIn Profile"
               className="hidden sm:flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-zinc-300 hover:border-cyan-500/40 hover:text-white hover:bg-white/5 transition-all"
             >
-              <FaLinkedin className="text-base" />
+              <Linkedin className="w-4 h-4" strokeWidth={1.75} aria-hidden="true" />
             </a>
 
             <a
@@ -134,18 +135,20 @@ export default function Navbar() {
               className="flex items-center gap-1.5 rounded-full bg-gradient-to-r from-emerald-500 to-teal-600 px-3.5 py-1.5 sm:px-4 sm:py-2 text-xs font-bold text-black tracking-wide shadow-md shadow-emerald-500/20 hover:brightness-110 hover:shadow-emerald-500/30 transition-all"
             >
               <span>Resume</span>
-              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v12m0 0l-4-4m4 4l4-4M4 18h16" />
-              </svg>
+              <Download className="w-3.5 h-3.5" strokeWidth={2} aria-hidden="true" />
             </a>
 
             {/* Mobile Hamburger Toggle */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label="Toggle Navigation"
-              className="lg:hidden flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-zinc-200"
+              className="lg:hidden flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-zinc-200 hover:text-white hover:border-white/20 transition-all"
             >
-              {isMenuOpen ? "✕" : "☰"}
+              {isMenuOpen ? (
+                <X className="w-5 h-5 text-zinc-200" strokeWidth={1.75} aria-hidden="true" />
+              ) : (
+                <Menu className="w-5 h-5 text-zinc-200" strokeWidth={1.75} aria-hidden="true" />
+              )}
             </button>
           </div>
         </nav>
@@ -179,17 +182,19 @@ export default function Navbar() {
                     href={contact.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 text-zinc-400 hover:text-white"
+                    aria-label="GitHub Profile"
+                    className="p-2 text-zinc-400 hover:text-white transition-colors"
                   >
-                    <FaGithub className="text-lg" />
+                    <Github className="w-4 h-4" strokeWidth={1.75} />
                   </a>
                   <a
                     href={contact.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 text-zinc-400 hover:text-white"
+                    aria-label="LinkedIn Profile"
+                    className="p-2 text-zinc-400 hover:text-white transition-colors"
                   >
-                    <FaLinkedin className="text-lg" />
+                    <Linkedin className="w-4 h-4" strokeWidth={1.75} />
                   </a>
                 </div>
                 <div className="text-[11px] font-mono text-emerald-400">

@@ -3,6 +3,7 @@
 import SectionContainer from "./SectionContainer";
 import AnimatedSection from "./AnimatedSection";
 import { education } from "@/data/education";
+import { CheckCircle2 } from "lucide-react";
 
 export default function Education() {
   return (
@@ -55,7 +56,7 @@ export default function Education() {
                   <ul className="space-y-2.5 text-sm sm:text-base text-zinc-300">
                     {item.highlights.map((h, hIdx) => (
                       <li key={hIdx} className="flex items-start gap-3">
-                        <span className="text-emerald-400 font-bold mt-0.5">✓</span>
+                        <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" strokeWidth={1.75} aria-hidden="true" />
                         <span>{h}</span>
                       </li>
                     ))}

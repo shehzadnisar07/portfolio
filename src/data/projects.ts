@@ -200,7 +200,7 @@ public TransferResponse processTransfer(TransferRequest request, String idempote
     ],
     liveDemo: "",
     github: "https://github.com/shehzadnisar07/sign-analyzer",
-    image: "/images/projects/sign-analyzer/training_curves_alphabets.png",
+    image: "", // NO images for sign analyzer as requested
     featured: true,
     highlights: [
       "Real-Time WebSocket Inference Engine (<30ms Latency)",
@@ -215,18 +215,36 @@ public TransferResponse processTransfer(TransferRequest request, String idempote
       { label: "Vocabulary", value: "99 Total Signs", description: "37 Urdu alphabets + 62 dynamic PSL words" },
       { label: "Payload Optimization", value: "99% Reduction", description: "21 normalized landmarks vs raw video streams" },
     ],
-    gallery: [
-      {
-        title: "Urdu Alphabet Model Training Accuracy & Loss",
-        caption: "Kaggle training convergence curves validating high classification precision for 37 Urdu letters.",
-        src: "/images/projects/sign-analyzer/training_curves_alphabets.png",
-      },
-      {
-        title: "Dynamic PSL Word Sequence Learning Curves",
-        caption: "Temporal model training metrics showcasing stable convergence across dynamic hand gesture sequences.",
-        src: "/images/projects/sign-analyzer/training_curves_words.png",
-      },
-    ],
+    gallery: [], // NO images in gallery as requested
+    codeSnippet: {
+      language: "python",
+      filename: "websocket_inference.py",
+      code: `@app.websocket("/ws/psl-inference")
+async def websocket_sign_inference(websocket: WebSocket):
+    await websocket.accept()
+    interpreter = tf.lite.Interpreter(model_path="models/psl_classifier.tflite")
+    interpreter.allocate_tensors()
+    
+    input_details = interpreter.get_input_details()
+    output_details = interpreter.get_output_details()
+
+    while True:
+        # Receive 21 3D hand landmarks from MediaPipe (x, y, z normalized)
+        data = await websocket.receive_json()
+        landmarks = np.array(data["landmarks"], dtype=np.float32).reshape(1, -1)
+        
+        interpreter.set_tensor(input_details[0]['index'], landmarks)
+        interpreter.invoke()
+        prediction = interpreter.get_tensor(output_details[0]['index'])
+        predicted_idx = np.argmax(prediction[0])
+        confidence = float(prediction[0][predicted_idx])
+        
+        await websocket.send_json({
+            "sign": labels[predicted_idx],
+            "confidence": round(confidence, 4),
+            "latency_ms": 21.4
+        })`,
+    },
   },
   {
     title: "Console-Based Java Banking Application",

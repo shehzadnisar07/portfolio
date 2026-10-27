@@ -3,7 +3,8 @@
 import Link from "next/link";
 import SectionContainer from "./SectionContainer";
 import { contact } from "@/data/contact";
-import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp } from "react-icons/fa";
+import { Mail, MessageCircle, Download } from "lucide-react";
+import { Github, Linkedin } from "@/components/icons/BrandIcons";
 
 export default function Footer() {
   const currentYear = 2026;
@@ -27,7 +28,7 @@ export default function Footer() {
               </span>
             </div>
             <p className="max-w-md text-xs sm:text-sm text-zinc-400 leading-relaxed">
-              Junior Java Backend & Distributed Systems Developer focused on event-driven architectures, Spring Boot microservices, Kafka streaming, and robust concurrency control.
+              Junior Java Backend & Full-Stack Developer specializing in Spring Boot microservices, Kafka event streaming, Redis, and React.
             </p>
             <div className="text-xs font-mono text-emerald-400">
               UBIT, University of Karachi • Karachi, Pakistan
@@ -71,7 +72,7 @@ export default function Footer() {
                 aria-label="GitHub"
                 className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-zinc-300 hover:text-white hover:border-emerald-500/40 hover:bg-emerald-500/10 transition-all"
               >
-                <FaGithub />
+                <Github className="w-4 h-4" strokeWidth={1.75} aria-hidden="true" />
               </a>
               <a
                 href={contact.linkedin}
@@ -80,14 +81,14 @@ export default function Footer() {
                 aria-label="LinkedIn"
                 className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-zinc-300 hover:text-white hover:border-cyan-500/40 hover:bg-cyan-500/10 transition-all"
               >
-                <FaLinkedin />
+                <Linkedin className="w-4 h-4" strokeWidth={1.75} aria-hidden="true" />
               </a>
               <a
                 href={`mailto:${contact.email}`}
                 aria-label="Email"
                 className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-zinc-300 hover:text-white hover:border-emerald-500/40 hover:bg-emerald-500/10 transition-all"
               >
-                <FaEnvelope />
+                <Mail className="w-4 h-4" strokeWidth={1.75} aria-hidden="true" />
               </a>
               <a
                 href="https://wa.me/923443380292"
@@ -96,15 +97,16 @@ export default function Footer() {
                 aria-label="WhatsApp"
                 className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-zinc-300 hover:text-white hover:border-emerald-500/40 hover:bg-emerald-500/10 transition-all"
               >
-                <FaWhatsapp />
+                <MessageCircle className="w-4 h-4" strokeWidth={1.75} aria-hidden="true" />
               </a>
             </div>
             <a
               href={contact.resumePath}
               download
-              className="mt-4 text-xs font-mono text-emerald-400 underline hover:text-emerald-300"
+              className="mt-4 inline-flex items-center gap-1.5 text-xs font-mono text-emerald-400 hover:text-emerald-300 transition-colors"
             >
-              Download PDF Resume ↓
+              <span>Download PDF Resume</span>
+              <Download className="w-3.5 h-3.5" strokeWidth={2} aria-hidden="true" />
             </a>
           </div>
         </div>
@@ -115,7 +117,7 @@ export default function Footer() {
             © {currentYear} Shehzad Nisar. All rights reserved.
           </div>
           <div>
-            Designed with Obsidian & Spring Emerald Architecture.
+            Engineered with Next.js, TypeScript, Tailwind CSS, & Lucide Icons.
           </div>
         </div>
       </SectionContainer>

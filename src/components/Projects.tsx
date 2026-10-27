@@ -5,7 +5,15 @@ import Link from "next/link";
 import SectionContainer from "./SectionContainer";
 import AnimatedSection from "./AnimatedSection";
 import { projects } from "@/data/projects";
-import { FaGithub, FaExternalLinkAlt, FaTerminal } from "react-icons/fa";
+import {
+  ExternalLink,
+  Terminal,
+  ArrowRight,
+  Activity,
+  Check,
+  CheckCircle2,
+} from "lucide-react";
+import { Github } from "@/components/icons/BrandIcons";
 
 export default function Projects() {
   return (
@@ -20,7 +28,7 @@ export default function Projects() {
             Production Microservices & Systems
           </h2>
           <p className="mt-4 text-base sm:text-lg text-zinc-400 leading-relaxed">
-            Detailed case studies across Spring Boot microservices, multi-gateway fintech platforms, and real-time AI inference engines.
+            Detailed case studies across Spring Boot microservices, modular payment platforms, and real-time AI inference engines.
           </p>
         </div>
 
@@ -53,50 +61,91 @@ export default function Projects() {
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-[#090b10] via-transparent to-transparent opacity-40" />
                       </div>
-                    ) : (
-                      /* Dedicated Terminal / Console Window (for Console-based applications) */
+                    ) : project.slug === "sign-analyzer" ? (
+                      /* Dedicated Real-Time WebSocket Terminal Monitor for Sign Analyzer */
                       <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#06080d] p-5 sm:p-6 flex flex-col justify-between text-left font-mono">
                         <div>
-                          {/* Mac-style window controls */}
                           <div className="flex items-center justify-between pb-3 border-b border-white/10 mb-4 text-xs text-zinc-500">
                             <div className="flex items-center gap-2">
                               <span className="h-3 w-3 rounded-full bg-rose-500/80" />
                               <span className="h-3 w-3 rounded-full bg-amber-500/80" />
                               <span className="h-3 w-3 rounded-full bg-emerald-500/80" />
                             </div>
-                            <span className="flex items-center gap-1.5 text-zinc-400">
-                              <FaTerminal className="text-[11px]" />
-                              java -jar banking-app.jar
+                            <span className="inline-flex items-center gap-1.5 text-zinc-400">
+                              <Activity className="w-3.5 h-3.5 text-cyan-400" strokeWidth={1.75} />
+                              <span>ws://localhost:8000/ws/psl-inference</span>
                             </span>
                           </div>
 
                           <div className="space-y-1.5 text-xs text-zinc-300">
                             <p className="text-emerald-400">
-                              $ java -cp bin com.banking.Application
+                              $ uvicorn server.app:app --host 0.0.0.0 --port 8000
                             </p>
                             <p className="text-zinc-500">
-                              [INFO] Console Banking Core Engine Initialized
+                              [WS ACCEPTED] Handshake verified for Expo client
                             </p>
                             <p className="text-cyan-300">
-                              » [1] OPEN ACCOUNT (SAVING/CURRENT) → AC000001
-                            </p>
-                            <p className="text-zinc-400">
-                              » [2] P2P TRANSFER (TRANSFER_IN / TRANSFER_OUT)
-                            </p>
-                            <p className="text-zinc-400">
-                              » [3] STATEMENT LEDGER (Java Streams API sorted)
+                              [INPUT] MediaPipe: 21 3D hand keypoints received (x, y, z)
                             </p>
                             <p className="text-emerald-300">
-                              ✓ Double-entry bookkeeping verified.
+                              [TFLITE] Inference latency: 21.4ms | Confidence: 98.6%
                             </p>
-                            <p className="text-zinc-500">
-                              ✓ Generic @FunctionalInterface validation active.
+                            <p className="text-zinc-300">
+                              [PREDICTION] Static: &quot;Alif&quot; (الف) | Dynamic: &quot;Shukriya&quot; (شکریہ)
+                            </p>
+                            <p className="inline-flex items-center gap-1.5 text-emerald-400 pt-1">
+                              <Check className="w-3.5 h-3.5" strokeWidth={2} />
+                              <span>Zero raw video streaming (99% payload reduction)</span>
                             </p>
                           </div>
                         </div>
 
                         <div className="pt-2 text-[11px] text-zinc-500 border-t border-white/5 flex items-center justify-between">
-                          <span>JDK 17 • Zero External Libs</span>
+                          <span>FastAPI + TFLite Engine</span>
+                          <span className="text-emerald-400">FPS: 30 • P99: 24ms</span>
+                        </div>
+                      </div>
+                    ) : (
+                      /* Dedicated Clean Architecture CLI Window for Console Banking */
+                      <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#06080d] p-5 sm:p-6 flex flex-col justify-between text-left font-mono">
+                        <div>
+                          <div className="flex items-center justify-between pb-3 border-b border-white/10 mb-4 text-xs text-zinc-500">
+                            <div className="flex items-center gap-2">
+                              <span className="h-3 w-3 rounded-full bg-rose-500/80" />
+                              <span className="h-3 w-3 rounded-full bg-amber-500/80" />
+                              <span className="h-3 w-3 rounded-full bg-emerald-500/80" />
+                            </div>
+                            <span className="inline-flex items-center gap-1.5 text-zinc-400">
+                              <Terminal className="w-3.5 h-3.5 text-emerald-400" strokeWidth={1.75} />
+                              <span>java -cp bin com.banking.Application</span>
+                            </span>
+                          </div>
+
+                          <div className="space-y-1.5 text-xs text-zinc-300">
+                            <p className="text-emerald-400">
+                              $ java -jar console-banking-engine.jar
+                            </p>
+                            <p className="text-zinc-500">
+                              [INFO] 4-Layer Domain Core Initialized
+                            </p>
+                            <p className="text-cyan-300">
+                              [1] OPEN ACCOUNT (SAVING/CURRENT) → AC000001
+                            </p>
+                            <p className="text-zinc-400">
+                              [2] P2P TRANSFER (TRANSFER_IN / TRANSFER_OUT)
+                            </p>
+                            <p className="text-zinc-400">
+                              [3] CHRONOLOGICAL STATEMENT (Java Streams sorted)
+                            </p>
+                            <p className="inline-flex items-center gap-1.5 text-emerald-300 pt-1">
+                              <CheckCircle2 className="w-3.5 h-3.5" strokeWidth={1.75} />
+                              <span>Double-entry bookkeeping verified</span>
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="pt-2 text-[11px] text-zinc-500 border-t border-white/5 flex items-center justify-between">
+                          <span>Java 17 • Zero External Libs</span>
                           <span className="text-emerald-400">BUILD SUCCESS</span>
                         </div>
                       </div>
@@ -110,9 +159,10 @@ export default function Projects() {
                       </span>
                       <Link
                         href={`/projects/${project.slug}`}
-                        className="text-emerald-400 hover:text-emerald-300 transition-colors flex items-center gap-1 font-semibold"
+                        className="inline-flex items-center gap-1 text-emerald-400 hover:text-emerald-300 transition-colors font-semibold"
                       >
-                        Deep Dive Spec →
+                        <span>Deep Dive Spec</span>
+                        <ArrowRight className="w-3.5 h-3.5" strokeWidth={1.75} aria-hidden="true" />
                       </Link>
                     </div>
                   </div>
@@ -173,10 +223,10 @@ export default function Projects() {
                   <div className="mt-6 flex flex-wrap items-center gap-3">
                     <Link
                       href={`/projects/${project.slug}`}
-                      className="inline-flex items-center gap-2 rounded-full bg-emerald-500 px-5 py-2.5 text-xs font-bold text-black transition-all hover:bg-emerald-400 hover:shadow-lg hover:shadow-emerald-500/25"
+                      className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500 px-5 py-2.5 text-xs font-bold text-black transition-all hover:bg-emerald-400 hover:shadow-lg hover:shadow-emerald-500/25"
                     >
                       <span>Read Case Study</span>
-                      <span>→</span>
+                      <ArrowRight className="w-3.5 h-3.5" strokeWidth={2} aria-hidden="true" />
                     </Link>
 
                     {project.liveDemo && (
@@ -186,7 +236,7 @@ export default function Projects() {
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 rounded-full border border-cyan-500/40 bg-cyan-500/10 px-4 py-2.5 text-xs font-bold text-cyan-300 transition-all hover:bg-cyan-500/20"
                       >
-                        <FaExternalLinkAlt className="text-xs" />
+                        <ExternalLink className="w-3.5 h-3.5" strokeWidth={1.75} aria-hidden="true" />
                         <span>Live Platform</span>
                       </a>
                     )}
@@ -198,7 +248,7 @@ export default function Projects() {
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2.5 text-xs font-mono text-zinc-300 transition-all hover:text-white hover:border-white/20"
                       >
-                        <FaGithub className="text-sm" />
+                        <Github className="w-3.5 h-3.5" strokeWidth={1.75} aria-hidden="true" />
                         <span>Source</span>
                       </a>
                     )}

@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import MagneticButton from "./MagneticButton";
 import SectionContainer from "./SectionContainer";
 import { contact } from "@/data/contact";
+import { ArrowRight } from "lucide-react";
+import { Github } from "@/components/icons/BrandIcons";
 
 export default function HeroSection() {
   return (
@@ -56,13 +58,21 @@ export default function HeroSection() {
 
         {/* Lead Narrative Description */}
         <motion.p
-          initial={{ opacity: 0, y: 25 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="mt-6 max-w-2xl text-base sm:text-lg md:text-xl text-zinc-300 leading-relaxed font-normal"
-        >
-          Final-year Computer Science student at the <strong>University of Karachi</strong> building high-throughput event-driven microservices. Specializing in <strong>Spring Boot 4/3</strong>, <strong>Apache Kafka</strong>, <strong>Redis</strong>, and ACID transactional architectures with real-world <strong>SAGA pattern</strong> implementations.
-        </motion.p>
+  initial={{ opacity: 0, y: 25 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.7, delay: 0.2 }}
+  className="mt-6 max-w-2xl text-base sm:text-lg md:text-xl text-zinc-300 leading-relaxed font-normal"
+>
+  Building backend microservices and full-stack web applications with{" "}
+  <strong>Java, Spring Boot, React, and TypeScript</strong>. Designed and
+  developed <strong>TransMoney</strong>, a six-service digital wallet
+  platform using <strong>Spring Data JPA (Hibernate)</strong>,{" "}
+  <strong>Spring Security (JWT)</strong>, <strong>Apache Kafka</strong>,{" "}
+  <strong>Redis</strong>, and <strong>MySQL</strong>. Seeking an
+  entry-level <strong>Java Backend Developer</strong> or{" "}
+  <strong>Full-Stack Developer</strong> role, with a focus on building
+  reliable, maintainable software.
+</motion.p>
 
         {/* Action Buttons */}
         <motion.div
@@ -77,9 +87,7 @@ export default function HeroSection() {
               className="group relative inline-flex items-center gap-2 rounded-full bg-emerald-500 px-6 sm:px-8 py-3.5 sm:py-4 text-xs sm:text-sm font-bold tracking-wider text-black transition-all hover:bg-emerald-400 hover:shadow-[0_0_30px_rgba(16,185,129,0.4)] hover:-translate-y-0.5 active:translate-y-0"
             >
               <span>EXPLORE ARCHITECTURE</span>
-              <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" strokeWidth={2} aria-hidden="true" />
             </a>
           </MagneticButton>
 
@@ -99,6 +107,7 @@ export default function HeroSection() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-transparent px-5 py-3.5 sm:py-4 text-xs sm:text-sm font-mono text-zinc-400 hover:text-white hover:border-white/30 transition-all"
             >
+              <Github className="w-4 h-4 text-zinc-400" strokeWidth={1.75} aria-hidden="true" />
               <span>github.com/shehzadnisar07</span>
             </a>
           </MagneticButton>

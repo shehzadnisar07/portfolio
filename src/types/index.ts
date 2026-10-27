@@ -1,7 +1,8 @@
 export interface Skill {
   name: string;
-  category: "Languages & Frameworks" | "Distributed Systems & Cloud" | "Databases & Caching" | "Tools & DevOps";
+  category: "Languages & Frameworks" | "Microservices & Cloud" | "Databases & Caching" | "Tools & DevOps";
   src?: string;
+  iconName?: string;
   badge?: string;
   description?: string;
 }
