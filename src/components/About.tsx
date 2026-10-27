@@ -20,9 +20,9 @@ export default function About() {
     },
     {
       label: "Core Specialization",
-      value: "Java, Spring Boot & Distributed Systems",
+      value: "Java, Spring Boot & Microservices",
       icon: "⚡",
-      detail: "Microservices, Kafka, Redis, SAGA Pattern, MySQL",
+      detail: "Microservices Architecture, Kafka, Redis, MySQL",
     },
     {
       label: "Availability",

@@ -4,13 +4,13 @@ export const projects: Project[] = [
   {
     title: "TransMoney",
     slug: "trans-money",
-    subtitle: "Event-Driven Distributed Digital Wallet & Banking Microservices",
+    subtitle: "Microservices-Based Digital Wallet Platform",
     description:
-      "A production-grade, distributed digital banking platform engineered with 6 Spring Boot microservices, Apache Kafka event orchestration, Redis rate-limiting and fraud velocity counters, MySQL pessimistic row locking, and a React 19 frontend.",
+      "A six-service Spring Boot microservices platform engineered with Spring Cloud Gateway, Apache Kafka event orchestration, Redis rate-limiting and fraud velocity counters, MySQL pessimistic row locking, and a React 19 + TypeScript frontend.",
     overview:
-      "TransMoney simulates modern fintech operations: account isolation, peer-to-peer transfers, real-time balance tracking, and automated fraud mitigation. The system implements the SAGA pattern for distributed money transfers, ensuring transactional safety and compensating refunds across independently scaled microservices.",
+      "TransMoney is a six-service digital wallet platform simulating modern retail banking: user registration, account lifecycle management, real-time balance tracking, and peer-to-peer fund transfers. Built with Spring Boot microservices communicating synchronously via OpenFeign and asynchronously via Apache Kafka topics.",
     challenge:
-      "Financial systems require sub-second transaction acknowledgment while strictly preventing race conditions (double debits), phantom reads, and fraudulent spikes across decoupled microservice databases without introducing high-latency distributed two-phase commit locks.",
+      "Financial systems require sub-second transaction acknowledgment while strictly preventing race conditions (double debits), phantom reads, and fraudulent transfers across decoupled microservices without introducing performance bottlenecks.",
     architecture: [
       "Spring Cloud Gateway: Reverse proxy validating JWTs, rewriting X-User-Email headers, and applying Redis token-bucket rate limiting (10 req/s, burst 20).",
       "Auth Service: Stateless JWT issuing and BCrypt password encryption.",
@@ -20,7 +20,7 @@ export const projects: Project[] = [
       "Notification Service: Asynchronous Kafka consumer processing verification alerts, delivery notifications, and automated account freeze events.",
     ],
     solution:
-      "Designed a decoupled event-driven architecture using Apache Kafka topics for asynchronous fraud scoring and notification fanout, paired with synchronous OpenFeign clients for initial debit execution. Enforced pessimistic database locking on sender accounts to eliminate race conditions, and implemented automatic SAGA compensating refunds when fraud rules trigger or OTP verification times out.",
+      "Designed an event-driven microservices architecture using Apache Kafka topics for asynchronous fraud scoring and notification fanout, paired with synchronous OpenFeign clients for initial debit execution. Enforced pessimistic database locking on sender accounts to eliminate race conditions, and implemented automatic SAGA compensating refunds when fraud rules trigger or OTP verification times out.",
     outcome:
       "Achieved sub-50ms debit acknowledgment with zero concurrency anomalies under synthetic race condition testing. Established dual-sided double-entry bookkeeping with immutable audit logs and complete idempotency guarantees.",
     technologies: [
@@ -40,15 +40,15 @@ export const projects: Project[] = [
     image: "/images/projects/trans-money/02-dashboard-shehzad.png",
     featured: true,
     highlights: [
-      "6-Service Microservices Architecture",
+      "Six-Service Spring Boot Microservices Architecture",
       "SAGA Pattern with Compensating Refunds",
       "Pessimistic Row-Level Locking (SELECT ... FOR UPDATE)",
-      "Apache Kafka Event Bus",
+      "Apache Kafka Event Bus (Topics & Consumer Groups)",
       "Redis Token-Bucket Rate Limiter & Velocity Counters",
-      "Full React 19 + TypeScript Client",
+      "React 19 + TypeScript Full-Stack Frontend",
     ],
     metrics: [
-      { label: "Microservices", value: "6 Services", description: "Gateway, Auth, Account, Transaction, Fraud, Notification" },
+      { label: "Architecture", value: "6 Microservices", description: "Gateway, Auth, Account, Transaction, Fraud, Notification" },
       { label: "Concurrency Control", value: "Pessimistic Lock", description: "Row-level SELECT ... FOR UPDATE on balance ledger" },
       { label: "Rate Limiting", value: "10 req/s (20 burst)", description: "Redis token-bucket filter at API Gateway" },
       { label: "Messaging", value: "Kafka Event Bus", description: "Asynchronous topic streaming for fraud & notifications" },
@@ -126,7 +126,7 @@ public TransferResponse processTransfer(TransferRequest request, String idempote
     challenge:
       "Handling international and domestic donation gateways simultaneously across fragmented Pakistani payment processors (JazzCash, Easypaisa, PayFast) while ensuring webhook idempotency, preventing dropped donation receipts, and presenting SECP governance compliance.",
     solution:
-      "Engineered a unified payment adapter layer abstracting all payment providers behind a single interface. Built an idempotent webhook deduplication engine (`provider + eventId`), serverless receipt generators, and a high-performance Next.js 16 frontend styled with an elegant alpine educational palette.",
+      "Engineered a unified payment adapter layer abstracting all payment providers behind a single interface. Built an idempotent webhook deduplication engine (provider + eventId), serverless receipt generators, and a high-performance Next.js 16 frontend styled with an elegant alpine educational palette.",
     outcome:
       "Successfully deployed on Vercel with zero cold-start latency, supporting 4,500+ students and 18 model mountain schools with verified transparency metrics.",
     technologies: [
@@ -229,39 +229,72 @@ public TransferResponse processTransfer(TransferRequest request, String idempote
     ],
   },
   {
-    title: "Console Banking Core Engine",
+    title: "Console-Based Java Banking Application",
     slug: "console-banking-backend",
     subtitle: "Enterprise Clean Architecture Banking Simulation in Pure Java 17",
     description:
-      "A four-layer banking backend engine built from scratch in Java 17 demonstrating Domain-Driven Design, the Collections Framework, Java Streams, Lambdas, and custom functional validation interfaces.",
+      "A four-layer console banking application (Domain, Repository, Service, and Validation layers) built from scratch in Java 17 demonstrating OOP, the Collections Framework, Java Streams, Lambdas, and custom functional validation interfaces.",
     overview:
-      "Designed to model core retail banking principles: account opening (SAVINGS/CURRENT) with sequential account identifiers (AC000001), double-entry transaction ledgers, peer-to-peer transfers, and chronological account statement queries.",
+      "Built a four-layer console banking application supporting six core operations: opening SAVING/CURRENT accounts with formatted sequential IDs (AC000001) and UUID customer keys, deposits, withdrawals, peer-to-peer transfers (TRANSFER_IN/TRANSFER_OUT), account statements, and customer search.",
     challenge:
-      "Enforcing strict data integrity, preventing self-transfers, handling insufficient funds, and generating multi-criteria sorted ledger statements without relying on external frameworks or databases.",
+      "Enforcing strict data integrity, preventing self-transfers, handling insufficient funds, and generating multi-criteria sorted chronological statements without external database engines or frameworks.",
     solution:
-      "Structured the project into strict Domain, Repository, Service, and Validation layers. Utilized `HashMap` and `ArrayList` with `computeIfAbsent` for per-account ledger isolation, and created a generic `@FunctionalInterface Validation<T>` to chain reusable validation rules.",
+      "Structured the project into strict Domain, Repository, Service, and Validation layers. Implemented in-memory repositories using Java Collections (HashMap and ArrayList with computeIfAbsent for per-account transaction ledgers) and used Java Streams (filter, flatMap, Comparator.comparing) and Optional (orElseThrow) to query customer accounts and sort chronological statements.",
     outcome:
-      "Created a robust, crash-resilient core banking engine with zero external dependencies, comprehensive exception handling, and full Streams-based audit reporting.",
+      "Designed a generic @FunctionalInterface (Validation<T>) with lambda expressions and custom exceptions (AccountNotFoundException, InsufficientAmountException, ValidationException) guarding against invalid inputs and insufficient-funds errors.",
     technologies: [
       "Java 17",
-      "Object-Oriented Programming (OOP)",
-      "Collections Framework",
+      "OOP (Object-Oriented Programming)",
+      "Collections (HashMap, ArrayList)",
       "Java Streams API",
       "Lambdas & Optionals",
-      "Functional Interfaces",
+      "@FunctionalInterface",
       "Custom Exceptions",
     ],
     liveDemo: "",
     github: "https://github.com/shehzadnisar07/Java-programming-backend",
-    image: "/images/projects/trans-money/06-sender-ledger.png",
+    image: "", // NO images for console based banking as requested
     featured: false,
     highlights: [
       "Four-Layer Architecture (Domain, Repository, Service, Validation)",
-      "Generic Functional Validation Interface with Lambda Chaining",
-      "In-Memory Isolated Ledgers using computeIfAbsent",
-      "Java Streams Comparator-Driven Statement Generation",
+      "Generic Functional Validation Interface with Lambda Expressions",
+      "In-Memory Isolated Ledgers using HashMap and computeIfAbsent",
+      "Java Streams & Comparator Chronological Statement Sorting",
       "Robust Custom Exception Hierarchy",
     ],
-    gallery: [],
+    gallery: [], // NO images in gallery as requested
+    codeSnippet: {
+      language: "java",
+      filename: "BankingService.java",
+      code: `// Four-layer architecture with Functional Validation & Streams
+@FunctionalInterface
+public interface Validation<T> {
+    void validate(T target) throws ValidationException;
+}
+
+public class AccountService {
+    private final Map<String, Account> accounts = new HashMap<>();
+    private final Map<String, List<Transaction>> ledgers = new HashMap<>();
+
+    public void transfer(String fromId, String toId, BigDecimal amount) {
+        Account from = Optional.ofNullable(accounts.get(fromId))
+            .orElseThrow(() -> new AccountNotFoundException("Source account not found: " + fromId));
+        Account to = Optional.ofNullable(accounts.get(toId))
+            .orElseThrow(() -> new AccountNotFoundException("Destination account not found: " + toId));
+
+        if (from.getBalance().compareTo(amount) < 0) {
+            throw new InsufficientAmountException("Insufficient balance for transfer");
+        }
+
+        from.withdraw(amount);
+        to.deposit(amount);
+
+        ledgers.computeIfAbsent(fromId, k -> new ArrayList<>())
+            .add(new Transaction(fromId, toId, amount.negate(), TransactionType.TRANSFER_OUT));
+        ledgers.computeIfAbsent(toId, k -> new ArrayList<>())
+            .add(new Transaction(toId, fromId, amount, TransactionType.TRANSFER_IN));
+    }
+}`,
+    },
   },
 ];

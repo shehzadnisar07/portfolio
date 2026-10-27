@@ -65,7 +65,7 @@ export default function Navbar() {
                 Shehzad Nisar
               </span>
               <span className="text-[10px] font-mono uppercase tracking-widest text-emerald-400/80">
-                Java Backend & Systems
+                Java, Spring Boot & Microservices
               </span>
             </div>
           </Link>

@@ -99,13 +99,13 @@ export default function MicroserviceArchitectureFlow() {
         {/* Section Header */}
         <div className="max-w-3xl mb-12 text-left">
           <div className="inline-flex items-center gap-2 rounded-md bg-cyan-500/10 border border-cyan-500/20 px-3 py-1 text-xs font-mono font-medium text-cyan-400 mb-4">
-            <span>03. DISTRIBUTED SYSTEMS ARCHITECTURE</span>
+            <span>03. MICROSERVICES ARCHITECTURE</span>
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-white leading-tight">
-            TransMoney 6-Service Topology
+            TransMoney 6-Service Microservices Topology
           </h2>
           <p className="mt-4 text-base sm:text-lg text-zinc-400 leading-relaxed">
-            Interactive system architecture demonstrating how synchronous REST via OpenFeign and asynchronous event streams via Apache Kafka interact with Redis and MySQL databases.
+            Interactive architecture demonstrating how 6 Spring Boot microservices communicate via synchronous OpenFeign and asynchronous Apache Kafka topics.
           </p>
         </div>
 

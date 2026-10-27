@@ -27,7 +27,7 @@ export default function HeroSection() {
         >
           <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
           <span className="tracking-widest uppercase">
-            Java 17 • Spring Boot • Kafka • SAGA Distributed Systems
+            Java 17 • Spring Boot • Microservices • Kafka • React 19
           </span>
         </motion.div>
 
@@ -50,7 +50,7 @@ export default function HeroSection() {
           <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm sm:text-base md:text-xl font-mono text-emerald-400 font-semibold tracking-wide">
             <span>[ JUNIOR JAVA BACKEND DEVELOPER ]</span>
             <span className="text-zinc-600 hidden sm:inline">|</span>
-            <span className="text-cyan-400">[ DISTRIBUTED SYSTEMS ]</span>
+            <span className="text-cyan-400">[ SPRING BOOT & MICROSERVICES ]</span>
           </div>
         </motion.div>
 
